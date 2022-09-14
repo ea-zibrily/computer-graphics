@@ -28,12 +28,13 @@ int main(int argc, char **argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-    glutInitWindowPosition(100,100);
+    glutInitWindowPosition(100,100); //tempat keluarnya popup ouput pada windows
     glutInitWindowSize(640, 480);
 
     glutCreateWindow("Primitive Draw 3");
     glClearColor(0.0, 0.0, 0.0, 0.0);
     gluOrtho2D(-320.0, 320.0, -240.0, 240.0);
+    //gluOrtho2D(320.0, -320.0, 240.0, -240.0); //hasilnya berubah karena proyeksi kartesiannya diubah
     glutIdleFunc(display);
     glutDisplayFunc(display);
     glutMainLoop();

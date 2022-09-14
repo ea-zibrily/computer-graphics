@@ -6,7 +6,13 @@ using namespace std;
 
 void draw()
 {
-    //test
+    // test
+}
+
+void keyboardInput(unsigned char key, int x, int y)
+{
+
+
 }
 
 void display()
@@ -20,7 +26,7 @@ int main(int argc, char **argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-    glutInitWindowPosition(100,100);
+    glutInitWindowPosition(100, 100);
     glutInitWindowSize(640, 480);
 
     glutCreateWindow("Primitive Draw 1");
@@ -28,8 +34,8 @@ int main(int argc, char **argv)
     gluOrtho2D(-320.0, 320.0, -240.0, 240.0);
     glutIdleFunc(display);
     glutDisplayFunc(display);
+    glutKeyboardFunc(keyboardInput);
     glutMainLoop();
 
     return 0;
-
 }
