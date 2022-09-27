@@ -1,15 +1,15 @@
 /*
 
 Code: Draw with glut
-File: transform3.cpp
+File: transform4.cpp
 Programmer: Zibrilyy | SHINONNN
-Date: 26/09/2022
+Date: 27/09/2022
 
 */
 
 /*
 
-Membuat objek grafik dengan berbagai macam bentuk
+Membuat objek grafik bentuk pizza sederhana menggunakan glFrustum()
 
 */
 
