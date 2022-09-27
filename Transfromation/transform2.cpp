@@ -1,7 +1,7 @@
 /*
 
 Code: Draw with glut
-File: transform1.cpp
+File: transform3.cpp
 Programmer: Zibrilyy | SHINONNN
 Date: 26/09/2022
 
@@ -29,13 +29,12 @@ void drawScene(void)
 
     // Modeling transformations.
     glTranslatef(X, Y, Z);
-    // glRotatef(45.0, 0.0, 0.0, 1.0);
 
-    glutWireCube(5.0); // Box.
-    // glutWireTeapot(5.0); // Teapot
+    // glutWireCube(5.0); // Box.
+   // glutSolidCube(5.0);
+    //glutWireTeapot(5.0); // Teapot
     // glutWireCylinder(2.0, 5.0, 10.0, 2.0);
     // glutSolidCylinder(2.0, 5.0, 10.0, 2.0);
-    // pitch roll yaw
 
     glFlush();
 }
@@ -53,8 +52,7 @@ void resize(int w, int h)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    glOrtho(-5.0, 5.0, -5.0, 5.0, 5.0, 100.0);
-    // glFrustum(-5.0, 5.0, -5.0, 5.0, 5.0, 100.0);
+    glFrustum(-5.0, 5.0, -5.0, 5.0, 5.0, 100.0);
 
     glMatrixMode(GL_MODELVIEW);
 }
@@ -107,7 +105,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
     glutInitWindowSize(500, 500);
     glutInitWindowPosition(100, 100);
-    glutCreateWindow("box-glOrtho2D.cpp");
+    glutCreateWindow("solid-cube.cpp");
     glutDisplayFunc(drawScene);
     glutReshapeFunc(resize);
     glutKeyboardFunc(keyInput);
