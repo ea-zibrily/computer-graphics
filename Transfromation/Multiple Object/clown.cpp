@@ -1,10 +1,10 @@
-////////////////////////////////////////////////////////////////////////        
+////////////////////////////////////////////////////////////////////////
 // clown3.cpp
 //
-// This program draws an animated clown's head. 
+// This program draws an animated clown's head.
 // However, it is incremental: a 1st part is clown1.cpp, 2nd is
 // clown2.cpp, finally the whole program (see Chapter 4).
-// Initially, only the first part for clown1.cpp is uncommented. The 
+// Initially, only the first part for clown1.cpp is uncommented. The
 // parts for clown2.cpp and clown3.cpp are initially commented out. They
 // must be successively uncommented for those programs.
 //
@@ -13,20 +13,20 @@
 // Press the up/down arrow keys to speed up/slow down animation.
 //
 // Sumanta Guha.
-//////////////////////////////////////////////////////////////////////// 
+////////////////////////////////////////////////////////////////////////
 
-#define _USE_MATH_DEFINES 
+#define _USE_MATH_DEFINES
 
 #include <cstdlib>
 #include <cmath>
 //#include <iostream>
 
 #include <GL/glew.h>
-#include <GL/freeglut.h> 
+#include <GL/freeglut.h>
 
 // Globals.
-static float angle = 0.0; // Rotation.angle of hat.
-static int isAnimate = 0; // Animated?
+static float angle = 0.0;         // Rotation.angle of hat.
+static int isAnimate = 0;         // Animated?
 static int animationPeriod = 100; // Time interval between frames.
 
 // Drawing routine.
@@ -37,106 +37,118 @@ Uncomment the part from clown2.cpp and then clown3.cpp, successively, for those 
 
 void drawScene(void)
 {
-	float t; // Parameter along helix.
+    float t; // Parameter along helix.
 
-	glClear(GL_COLOR_BUFFER_BIT);
-	glLoadIdentity();
+    glClear(GL_COLOR_BUFFER_BIT);
+    glLoadIdentity();
 
-	// Place scene in frustum.
-	glTranslatef(0.0, 0.0, -9.0);
-		
-	//*** clown1.cpp starts here. ***
+    // Place scene in frustum.
+    glTranslatef(0.0, 0.0, -9.0);
 
-	// Head.
-	glColor3f(0.0, 0.0, 1.0);
-	glutWireSphere(2.0, 20, 20);
-	//*** clown1.cpp ends here. ***
-	
-	
-	
-	//*** clown2.cpp starts here. ***
-	glPushMatrix();
+    //*** clown1.cpp starts here. ***
 
-	// Transformations of the hat and brim.
-	glRotatef(angle, 0.0, 1.0, 0.0);
-	glRotatef(30.0, 0.0, 0.0, 1.0);
-	glRotatef(-90.0, 1.0, 0.0, 0.0);
-	glTranslatef(0.0, 0.0, 2.0);
+    // Head.
+    glColor3f(0.0, 0.0, 1.0);
+    glutWireSphere(2.0, 20, 20);
+    //*** clown1.cpp ends here. ***
 
-	// Hat.
-	glColor3f(0.0, 1.0, 0.0);
-	glutWireCone(2.0, 4.0, 20, 20);
+    //*** clown2.cpp starts here. ***
+    glPushMatrix();
 
-	// Brim.
-	glutWireTorus(0.2, 2.2, 10, 25);
+    // Transformations of the hat and brim.
+    glRotatef(angle, 0.0, 1.0, 0.0);
+    glRotatef(30.0, 0.0, 0.0, 1.0);
+    glRotatef(-90.0, 1.0, 0.0, 0.0);
+    glTranslatef(0.0, 0.0, 2.0);
 
-	glPopMatrix();
-	//*** clown2.cpp ends here. ***
-	
-	
-	
-	//*** clown3.cpp starts here. NOTE: Also leave the part for clown2.cpp above uncommented. ***
-	glPushMatrix();
+    // Hat.
+    glColor3f(0.0, 1.0, 0.0);
+    glutWireCone(2.0, 4.0, 20, 20);
 
-	// Transformations of the left ear.
-	glTranslatef(sin((M_PI/180.0)*angle), 0.0, 0.0);
-	glTranslatef(3.5, 0.0, 0.0);
+    // Brim.
+    glutWireTorus(0.2, 2.2, 10, 25);
 
-	// Left ear.
-	glColor3f(1.0, 0.0, 0.0);
-	glutWireSphere(0.5, 10, 10);
+    glPopMatrix();
+    //*** clown2.cpp ends here. ***
 
-	glPopMatrix();
+    //*** clown3.cpp starts here. NOTE: Also leave the part for clown2.cpp above uncommented. ***
+    glPushMatrix();
 
-	glPushMatrix();
+    // Transformations of the left ear.
+    glTranslatef(sin((M_PI / 180.0) * angle), 0.0, 0.0);
+    glTranslatef(3.5, 0.0, 0.0);
 
-	// Transformations of the right ear.
-	glTranslatef(-sin((M_PI/180.0)*angle), 0.0, 0.0);
-	glTranslatef(-3.5, 0.0, 0.0);
+    // Left ear.
+    glColor3f(1.0, 0.0, 0.0);
+    glutWireSphere(0.5, 10, 10);
 
-	// Right ear.
-	glColor3f(1.0, 0.0, 0.0);
-	glutWireSphere(0.5, 10, 10);
+    glPopMatrix();
 
-	glPopMatrix();
+    glPushMatrix();
 
-	glPushMatrix();
+    // Transformations of the right ear.
+    glTranslatef(-sin((M_PI / 180.0) * angle), 0.0, 0.0);
+    glTranslatef(-3.5, 0.0, 0.0);
 
-	// Transformations of the spring to the left ear.
-	glTranslatef(-2.0, 0.0, 0.0);
-	glScalef(-1 - sin( (M_PI/180.0) * angle ), 1.0, 1.0);
+    // Right ear.
+    glColor3f(1.0, 0.0, 0.0);
+    glutWireSphere(0.5, 10, 10);
 
-	// Spring to left ear.
-	glColor3f(0.0, 1.0, 0.0);
-	glBegin(GL_LINE_STRIP);
-	for(t = 0.0; t <= 1.0; t += 0.05)
-	glVertex3f(t, 0.25 * cos(10.0 * M_PI * t), 0.25 * sin(10.0 * M_PI * t));
-	glEnd();
+    glPopMatrix();
 
-	glPopMatrix();
+    glPushMatrix();
 
-	glPushMatrix();
+    // Transformations of the spring to the left ear.
+    glTranslatef(-2.0, 0.0, 0.0);
+    glScalef(-1 - sin((M_PI / 180.0) * angle), 1.0, 1.0);
 
-	// Transformations of the spring to the right ear.
-	glTranslatef(2.0, 0.0, 0.0);
-	glScalef(1 + sin( (M_PI/180.0) * angle ), 1.0, 1.0);
+    // Spring to left ear.
+    glColor3f(0.0, 1.0, 0.0);
+    glBegin(GL_LINE_STRIP);
+    for (t = 0.0; t <= 1.0; t += 0.05)
+        glVertex3f(t, 0.25 * cos(10.0 * M_PI * t), 0.25 * sin(10.0 * M_PI * t));
+    glEnd();
 
-	// Spring to right ear.
-	glColor3f(0.0, 1.0, 0.0);
-	glBegin(GL_LINE_STRIP);
-	for(t = 0.0; t <= 1.0; t += 0.05)
-	glVertex3f(t, 0.25 * cos(10.0 * M_PI * t), 0.25 * sin(10.0 * M_PI * t));
-	glEnd();
+    glPopMatrix();
 
-	glPopMatrix();
-	//*** clown3.cpp ends here. ***
+    glPushMatrix();
 
-    //clown4 eyes
+    // Transformations of the spring to the right ear.
+    glTranslatef(2.0, 0.0, 0.0);
+    glScalef(1 + sin((M_PI / 180.0) * angle), 1.0, 1.0);
+
+    // Spring to right ear.
+    glColor3f(0.0, 1.0, 0.0);
+    glBegin(GL_LINE_STRIP);
+    for (t = 0.0; t <= 1.0; t += 0.05)
+        glVertex3f(t, 0.25 * cos(10.0 * M_PI * t), 0.25 * sin(10.0 * M_PI * t));
+    glEnd();
+
+    glPopMatrix();
+    //*** clown3.cpp ends here. ***
+
+    // clown4 eyes
+
+    glPushMatrix();
+    glTranslatef(0.8, 0.5, -0.9);
+    glColor3f(0.0, 0.0, 0.0);
+    glutWireSphere(0.5, 30.0, 2.0);
+    glPopMatrix();
+
+
     glPushMatrix();
     glTranslatef(0.8, 0.5, -0.9);
     glColor3f(1.0, 0.0, 0.0);
     glutWireSphere(0.3, 30.0, 2.0);
     glPopMatrix();
+
+
+    glPushMatrix();
+    glTranslatef(-0.8, 0.5, -0.9);
+    glColor3f(0.0, 0.0, 0.0);
+    glutWireSphere(0.5, 30.0, 2.0);
+    glPopMatrix();
+
 
     glPushMatrix();
     glTranslatef(-0.8, 0.5, -0.9);
@@ -144,112 +156,120 @@ void drawScene(void)
     glutWireSphere(0.3, 30.0, 2.0);
     glPopMatrix();
 
-    //clown5 nose
+    // clown5 nose
     glPushMatrix();
+    glTranslatef(0.0, -1.0, -0.9);
+    glRotatef(-90.0, 1.0, 0.0, 0.0);
+    glColor3f(0.419608, 0.137255, 0.556863);
+    // glRotatef();
+    glutWireCone(0.5, 1.0, 30.0, 5.0);
 
-
-	glutSwapBuffers();
+    glutSwapBuffers();
 }
 
 // Routine to increase the rotation angle.
 void increaseAngle(void)
 {
-	angle += 5.0;
-	if (angle > 360.0) angle -= 360.0;
+    angle += 5.0;
+    if (angle > 360.0)
+        angle -= 360.0;
 }
 
 // Timer function.
 void animate(int value)
 {
-	if (isAnimate)
-	{
-		increaseAngle();
+    if (isAnimate)
+    {
+        increaseAngle();
 
-		glutPostRedisplay();
-		glutTimerFunc(animationPeriod, animate, 1);
-	}
+        glutPostRedisplay();
+        glutTimerFunc(animationPeriod, animate, 1);
+    }
 }
 
 // Initialization routine.
 void setup(void)
 {
-	glClearColor(1.0, 1.0, 1.0, 0.0);
+    glClearColor(1.0, 1.0, 1.0, 0.0);
 }
 
 // OpenGL window reshape routine.
 void resize(int w, int h)
 {
-	glViewport(0, 0, w, h);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glFrustum(-5.0, 5.0, -5.0, 5.0, 5.0, 100.0);
+    glViewport(0, 0, w, h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glFrustum(-5.0, 5.0, -5.0, 5.0, 5.0, 100.0);
 
-	glMatrixMode(GL_MODELVIEW);
+    glMatrixMode(GL_MODELVIEW);
 }
 
 // Keyboard input processing routine.
 void keyInput(unsigned char key, int x, int y)
 {
-	switch (key)
-	{
-	case 27:
-		exit(0);
-		break;
-	case ' ':
-		if (isAnimate) isAnimate = 0;
-		else
-		{
-			isAnimate = 1;
-			animate(1);
-		}
-		glutPostRedisplay();
-		break;
-	default:
-		break;
-	}
+    switch (key)
+    {
+    case 27:
+        exit(0);
+        break;
+    case ' ':
+        if (isAnimate)
+            isAnimate = 0;
+        else
+        {
+            isAnimate = 1;
+            animate(1);
+        }
+        glutPostRedisplay();
+        break;
+    default:
+        break;
+    }
 }
 
 // Callback routine for non-ASCII key entry.
 void specialKeyInput(int key, int x, int y)
 {
-	if (key == GLUT_KEY_DOWN) animationPeriod += 5;
-	if (key == GLUT_KEY_UP) if (animationPeriod > 5) animationPeriod -= 5;
-	glutPostRedisplay();
+    if (key == GLUT_KEY_DOWN)
+        animationPeriod += 5;
+    if (key == GLUT_KEY_UP)
+        if (animationPeriod > 5)
+            animationPeriod -= 5;
+    glutPostRedisplay();
 }
 
 /*
 // Routine to output interaction instructions to the C++ window.
 void printInteraction(void)
 {
-	std::cout << "Interaction:" << std::endl;
-	std::cout << "Press space to toggle between animation on and off." << std::endl
-		<< "Press the up/down arrow keys to speed up/slow down animation." << std::endl;
+    std::cout << "Interaction:" << std::endl;
+    std::cout << "Press space to toggle between animation on and off." << std::endl
+        << "Press the up/down arrow keys to speed up/slow down animation." << std::endl;
 }
 */
 
 // Main routine.
 int main(int argc, char **argv)
 {
-	//printInteraction();
-	glutInit(&argc, argv);
+    // printInteraction();
+    glutInit(&argc, argv);
 
-	glutInitContextVersion(4, 3);
-	glutInitContextProfile(GLUT_COMPATIBILITY_PROFILE);
+    glutInitContextVersion(4, 3);
+    glutInitContextProfile(GLUT_COMPATIBILITY_PROFILE);
 
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
-	glutInitWindowSize(500, 500);
-	glutInitWindowPosition(100, 100);
-	glutCreateWindow("clown3.cpp");
-	glutDisplayFunc(drawScene);
-	glutReshapeFunc(resize);
-	glutKeyboardFunc(keyInput);
-	glutSpecialFunc(specialKeyInput);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
+    glutInitWindowSize(500, 500);
+    glutInitWindowPosition(100, 100);
+    glutCreateWindow("clown3.cpp");
+    glutDisplayFunc(drawScene);
+    glutReshapeFunc(resize);
+    glutKeyboardFunc(keyInput);
+    glutSpecialFunc(specialKeyInput);
 
-	glewExperimental = GL_TRUE;
-	glewInit();
+    glewExperimental = GL_TRUE;
+    glewInit();
 
-	setup();
+    setup();
 
-	glutMainLoop();
+    glutMainLoop();
 }
-
