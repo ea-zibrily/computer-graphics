@@ -20,6 +20,8 @@ static float X = 0.0;
 static float Y = 0.0;
 static float Z = -15.0;
 
+static GLUquadric *qobj;
+
 // Drawing routine.
 void drawScene(void)
 {
@@ -29,6 +31,13 @@ void drawScene(void)
 
     // Modeling transformations.
 
+    // shape 1
+    glPushMatrix();
+    gluPartialDisk(qobj, 0.0, 10.0, 1000.0, 1.0, 0.0, 60.0);
+    glPopMatrix();
+
+
+    /*
     // shape 1
     glPushMatrix();
 
@@ -48,6 +57,7 @@ void drawScene(void)
     glutSolidCone(3.0, 5.5, 20.0, 5.0);
 
     glPopMatrix();
+    */
 
     glFlush();
 }
