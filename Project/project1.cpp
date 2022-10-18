@@ -55,7 +55,7 @@ void drawScene(void)
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(0.0, 0.0, 0.0);
     glLoadIdentity();
-    //glRotatef(45.0, 0.0, 1.0, 0.0);
+    // glRotatef(45.0, 0.0, 1.0, 0.0);
 
     //<summary
     // buat wadah kabel bagian belakang box alat
@@ -240,24 +240,6 @@ void resize(int w, int h)
 // Keyboard input processing routine.
 void keyInput(unsigned char key, int x, int y)
 {
-    /*
-//pattern position
-static float pat1X = 4.0; //4.0, -0.7
-static float pat1Y = -0.7;
-static float pat2X = 3.3; //3.3, -1.7
-static float pat2Y = -1.7;
-
-//input position
-static float inX = 3.0; //3.0, 2.5
-static float in1Y = 2.5;
-static float in2Y = 1.5;
-static float in3Y = 0.5;
-
-//card position
-static float card1X = -0.8; //-0.8, -2.1
-static float card1Y = -2.1;
-static float card2Y = -1.7;
-*/
     switch (key)
     {
     case 27:
