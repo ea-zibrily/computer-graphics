@@ -1,7 +1,7 @@
 /*
 
-Code: Make Chair Object
-File: transform3.cpp
+Code: Make Presence Box
+File: project1.cpp
 Programmer: 1. Zibril Yuan Afrianto | 5221600002
             2. Ahmad Rizky Juli Ridhani | 5221600026
 Date: 18/10/2022
@@ -55,6 +55,7 @@ void drawScene(void)
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(0.0, 0.0, 0.0);
     glLoadIdentity();
+    //glRotatef(45.0, 0.0, 1.0, 0.0);
 
     //<summary
     // buat wadah kabel bagian belakang box alat
