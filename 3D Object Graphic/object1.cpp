@@ -1,12 +1,14 @@
 /*
-Code: Make 2D Object Graphic - Kotak
+Code: Make 3D Object Graphic - Prisma
 File: object1.cpp
 Programmer: Zibrilyy | SHINONNN
-Date: 14/09/2022
+Date: 19/10/2022
 */
 
 /*
-Membuat objek grafik 2D bentuk kotak menggunakan drawPolygon
+
+Membuat objek grafik 3D bentuk prisma dengan visible dan invisible
+
 */
 
 #include <GL/gl.h>
