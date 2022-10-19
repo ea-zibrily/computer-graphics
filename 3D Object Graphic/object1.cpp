@@ -15,19 +15,14 @@ Membuat objek grafik 2D bentuk kotak menggunakan drawPolygon
 #include <math.h>
 using namespace std;
 
-// membuat struct dengan nama lain point2D
-typedef struct point
-{
-    float x;
-    float y;
-} point2D;
-
 //<summary>
 // membuat struct untuk menggambar point 3D
 //</summary>
 typedef struct
 {
-    float x, y, z;
+    float x;
+    float y;
+    float z;
 } point3D_t;
 
 typedef struct
@@ -44,14 +39,81 @@ typedef struct
     face_t fc[32];
 } object3D_t;
 
+//<summary>
+// membuat struct untuk menggambar vektor 3D
+//</summary>
+
+typedef struct
+{
+    float x;
+    float y;
+} point2D_t;
+
+typedef struct
+{
+    float v[4];
+} vector3D_t;
+
+// vektor 2d ke 3d
+point2D_t Vector2Point2D(vector3D_t vec)
+{
+    point2D_t pnt;
+    pnt.x = vec.v[0];
+    pnt.y = vec.v[1];
+    return pnt;
+}
+
+// vektor 3d ke 3d
+vector3D_t Point2Vector(point3D_t pnt)
+{
+    vector3D_t vec;
+    vec.v[0] = pnt.x;
+    vec.v[1] = pnt.y;
+    vec.v[2] = pnt.z;
+    vec.v[3] = 1.;
+    return vec;
+}
+
+typedef struct
+{
+    float x;
+    float y;
+} matrix3D_t;
+
+void drawPolygon(point2D_t shp[], int n)
+{
+    int i;
+    glBegin(GL_LINE_LOOP);
+    for (i = 0; i < n; i++)
+    {
+        glVertex2f(shp[i].x, shp[i].y);
+    }
+    glEnd();
+}
+
 void draw()
 {
-    object3D_t prisma = {5, {{0, 100, 0}, {100, 0, 0}, 
-    {0, 0, 100}, {-100, 0, 0}, {0, 0, -100}}, 5, 
-    {{3, {0, 1, 2}}, {3, {0, 2, 3}}, {3, {0, 3, 4}}, {3, 
-    {0, 4, 1}}, {4, {1, 4, 3, 2}}}};
+    float theta = 0.5;
+    //matrix3D_t tilting = rotationXMTX(theta) * rotationYMTX(-theta);
     
-    
+    object3D_t prisma = {5, {{0, 100, 0}, {100, 0, 0}, {0, 0, 100}, {-100, 0, 0}, {0, 0, -100}}, 5, {{3, {0, 1, 2}}, {3, {0, 2, 3}}, {3, {0, 3, 4}}, {3, {0, 4, 1}}, {4, {1, 4, 3, 2}}}};
+
+    /*
+    mat = tilting;
+    for (i = 0; i < prisma.NumberofVertices; i++)
+    {
+        vec[i] = Point2Vector(prisma.pnt[i]);
+        vec[i] = mat * vec[i];
+    }
+    for (i = 0; i < prisma.NumberofFaces; i++)
+    {
+        for (j = 0; j < prisma.fc[i].NumberofVertices; j++)
+            vecbuff[j] = vec[prisma.fc[i].pnt[j]];
+        for (j = 0; j < prisma.fc[i].NumberofVertices; j++)
+            titik2D[j] = Vector2Point2D(vec[prisma.fc[i].pnt[j]]);
+        drawPolygon(titik2D, prisma.fc[i].NumberofVertices);
+    }
+    */
 }
 
 void display()
