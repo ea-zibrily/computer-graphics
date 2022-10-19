@@ -217,13 +217,21 @@ void drawObject3D(object3D_t object, matrix3D_t mat)
         vec[i] = mat * vec[i];
     }
 
-    // sisi visible
     for (i = 0; i < object.NumberofFaces; i++)
     {
         for (j = 0; j < object.fc[i].NumberofVertices; j++)
         {
             vecbuff[j] = vec[object.fc[i].pnt[j]];
         }
+        
+        //sisi invicible
+        for (j = 0; j < object.fc[i].NumberofVertices; j++)
+        {
+            titik2D[j] = Vector2Point2D(vec[object.fc[i].pnt[j]]);
+        }
+        drawPolygon(titik2D, object.fc[i].NumberofVertices);
+        /*
+        // sisi visible
         vecNormal = (vecbuff[1] - vecbuff[0]) ^ (vecbuff[2] - vecbuff[0]);
         if (vecNormal.v[2] > 0)
         {
@@ -233,6 +241,7 @@ void drawObject3D(object3D_t object, matrix3D_t mat)
             }
             drawPolygon(titik2D, object.fc[i].NumberofVertices);
         }
+        */
     }
 }
 
@@ -271,7 +280,7 @@ int main(int argc, char **argv)
     glutInitWindowPosition(150, 150);
     glutInitWindowSize(640, 480);
 
-    glutCreateWindow("Object Graphic 3D 1");
+    glutCreateWindow("3d-object-prism");
     glClearColor(0.0, 0.0, 0.0, 0.0);
     gluOrtho2D(-320.0, 320.0, -240.0, 240.0);
     glutIdleFunc(display);
