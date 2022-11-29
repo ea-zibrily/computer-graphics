@@ -146,7 +146,7 @@ void drawScene()
 
 	writeData();
 
-	gluLookAt(0.0, 3.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(3.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
 	// Draw light source spheres (or arrow) after disabling lighting.
 	glDisable(GL_LIGHTING);

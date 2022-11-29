@@ -13,7 +13,8 @@
                 "-lfreeglut",
                 "-lglew32",
                 "-lopengl32",
-                "-lglu32"
+                "-lglu32",
+                "-lglfw3"
             ],
             "options": {
                 "cwd": "C:/msys64/mingw64/bin"
